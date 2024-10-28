@@ -1,3 +1,14 @@
+import io.ktor.application.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStreamReader
+import java.net.URL
+import javax.crypto.Cipher
+import javax.crypto.spec.SecretKeySpec
+import javax.net.ssl.HttpsURLConnection
+
 fun insufficientLoggingExample() {
     // Logging failed login attempts but not successful ones
     val username = "user123"
@@ -9,10 +20,6 @@ fun insufficientLoggingExample() {
     // No logs for successful logins, which can help in monitoring
 }
 
-
-import javax.crypto.Cipher
-import javax.crypto.spec.SecretKeySpec
-
 fun deprecatedAlgorithmExample(data: String) {
     // Using an outdated algorithm (e.g., DES)
     val key = SecretKeySpec("12345678".toByteArray(), "DES")
@@ -21,9 +28,6 @@ fun deprecatedAlgorithmExample(data: String) {
     val encryptedData = cipher.doFinal(data.toByteArray())
     println("Encrypted data: ${encryptedData.joinToString(", ")}")
 }
-
-import javax.net.ssl.HttpsURLConnection
-import java.net.URL
 
 fun improperCertificateValidationExample() {
     val url = URL("https://insecure-website.com")
@@ -35,7 +39,6 @@ fun improperCertificateValidationExample() {
     println("Response Code: $responseCode")
 }
 
-
 fun weakPasswordPolicyExample(password: String) {
     if (password.length < 6) {
         println("Password is too weak") // Insufficient password strength requirements
@@ -43,10 +46,6 @@ fun weakPasswordPolicyExample(password: String) {
         println("Password accepted")
     }
 }
-
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.routing.*
 
 fun unvalidatedRedirectExample(routing: Routing) {
     routing.get("/redirect") {
@@ -56,10 +55,6 @@ fun unvalidatedRedirectExample(routing: Routing) {
     }
 }
 
-
-import java.io.BufferedReader
-import java.io.InputStreamReader
-
 fun commandInjectionExample(command: String) {
     // Vulnerable to command injection
     val process = Runtime.getRuntime().exec(command)
@@ -67,7 +62,6 @@ fun commandInjectionExample(command: String) {
     val output = reader.readText()
     println("Command output: $output")
 }
-
 
 fun csrfVulnerabilityExample() {
     // Assume there's a form submission that doesn't validate CSRF tokens
@@ -89,9 +83,6 @@ fun resourceExhaustionExample(data: String) {
     }
     println("Data processed: ${buffer.length} characters")
 }
-
-
-import java.io.File
 
 fun pathTraversalExample(fileName: String) {
     // Accepting user input directly into file path

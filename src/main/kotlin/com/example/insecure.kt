@@ -1,8 +1,11 @@
+import java.io.File
 import java.sql.Connection
 import java.sql.DriverManager
+import kotlin.random.Random
 
 fun sqlInjectionExample(username: String, password: String) {
-    val connection: Connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "user", "password")
+    val connection: Connection =
+        DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "user", "password")
     // Vulnerable to SQL injection
     val query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'"
     val statement = connection.createStatement()
@@ -21,8 +24,6 @@ fun insecureDataStorageExample() {
     println("User's password is: $password") // Exposed sensitive data
 }
 
-
-
 fun insecureLibraryUseExample() {
     // Using an outdated or vulnerable version of a library
     // Suppose an external library has a known vulnerability
@@ -30,20 +31,15 @@ fun insecureLibraryUseExample() {
     println("Result from insecure library: $result")
 }
 
-
-
 fun xssExample(userInput: String) {
     // Vulnerable to XSS
     println("User input: <h1>$userInput</h1>") // Outputs raw HTML without escaping
 }
 
-import kotlin.random.Random
-
 fun insecureRandomnessExample() {
     val randomValue = Random.nextInt(100) // Not secure for cryptographic use
     println("Random value: $randomValue") // Vulnerable to prediction
 }
-
 
 fun inadequateExceptionHandlingExample() {
     try {
@@ -54,8 +50,6 @@ fun inadequateExceptionHandlingExample() {
         println("An error occurred: ${e.message}") // May expose sensitive information
     }
 }
-
-import java.io.File
 
 fun directoryTraversalExample(filePath: String) {
     // Vulnerable to directory traversal
@@ -78,8 +72,6 @@ fun sessionFixationExample(sessionId: String) {
     val currentSessionId = sessionId // Vulnerable to session fixation
     println("Current session ID: $currentSessionId")
 }
-
-import java.io.File
 
 fun insecureFileUploadExample(fileName: String) {
     // No validation for file type or content
